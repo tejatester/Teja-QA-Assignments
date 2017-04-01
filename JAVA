@@ -1,0 +1,765 @@
+ Break and continues
+
+// break and continues code
+
+public class BreakandCont
+
+{
+
+public void show()
+
+{
+
+System.out.println(&quot;This is First&quot;);
+
+//break;
+
+System.out.println(&quot;This is Last&quot;);
+
+}
+
+public static void main(String[] args)
+
+{
+
+/*BreakandCont bc= new BreakandCont();
+
+bc.show();*/
+
+for(int i=0; i&lt;100; i++){
+
+if(i&gt;=6 &amp;&amp; i&lt;=7)
+
+continue;
+
+if(i==50)
+
+break; // break point which executes the remaining values
+
+System.out.println(i);
+
+}
+
+}
+
+ Calculator
+
+public class Calculator
+
+{
+
+public int getsum(int i, int j){
+
+int c= i+j;
+
+return c;
+
+}
+
+public int getsub(int i, int j){
+
+return i-j;
+
+
+
+}
+
+public int getmul(int i, int j){
+
+return i*j;
+
+
+
+}
+
+}
+
+ DoWhile Loop
+
+// do while loop program
+
+public class Dowhileloop {
+
+public static void main(String[] args) {
+
+int i=20;
+
+do
+
+{
+
+System.out.println(i);
+
+i++; // increments upto 20
+
+}
+
+while(i&lt;=10); // come out of the do loop
+
+System.out.println(&quot;After while loop&quot;);
+
+}
+
+}
+
+ ForLoop
+
+// for loop
+
+public class Forllop {
+
+public static void main(String[] args) {
+
+int i=1;
+
+for(; i&lt;=10 ; )
+
+{
+
+System.out.println(i);
+
+i++; // incrementing the i value
+
+}
+
+}
+
+}
+
+ IfElse statemet
+
+// if else statements
+
+public class IfElseStatements {
+
+public static void main(String[] args)
+
+{
+
+int num= (int)(Math.random()*20);
+
+System.out.println(num);
+
+if(num&gt;10)
+
+{
+
+System.out.println(num+ &quot;is greater than 10&quot;); // executes below
+
+10 numbers
+
+}
+
+else if(num&lt;10 &amp;&amp; num&gt;5)
+
+{
+
+System.out.println(num+ &quot;between 10 and 15&quot;);// executes 10 to 15
+
+values
+
+}
+
+else
+
+{
+
+System.out.println(num+ &quot;is less than 10&quot;); // executes above 10
+
+number
+
+}
+
+}
+
+ Method Creation
+
+// creating methods
+
+public class Method
+
+{
+
+int i;
+
+int j;
+
+public void display() // method creation
+
+{
+
+i=10;
+
+j=20;
+
+//System.out.println(i);
+
+}
+
+public static void main(String[] args)
+
+{
+
+/* Method m= new Method();
+
+m.display(); */
+
+/*Home h= new Home();
+
+h.i++;
+
+Home h1= new Home();
+
+h1.i++;
+
+Home h2= new Home();
+
+System.out.println(h2.i);*/
+
+Calculator cal= new Calculator(); // object creation
+
+int i= cal.getsum(6,12);
+
+System.out.println(&quot;This is sum: &quot;+ i);
+
+System.out.println(cal.getmul(2, 4));
+
+System.out.println(cal.getsub(6, 3));
+
+}
+
+}
+
+ Method Calling
+
+public class Methodcalling {
+
+public void show()
+
+{
+
+int i;
+
+System.out.println(&quot;Inside the first method&quot;);
+
+show2(); // calling show2 method in show method
+
+System.out.println(&quot;This is after show2 method&quot;);
+
+}
+
+public void show1()
+
+{
+
+System.out.println(&quot;Inside the second method&quot;);
+
+show(); // calling show method in show1 method
+
+System.out.println(&quot;This is after show method&quot;);
+
+}
+
+public void show2()
+
+{
+
+System.out.println(&quot;Inside the third method&quot;);
+
+show1(); // calling show1 method in show2 method
+
+}
+
+public static void show3()
+
+{
+
+System.out.println(&quot;Inside the fourth method&quot;);
+
+}
+
+public static void main(String[] args)
+
+{
+
+Methodcalling mc= new Methodcalling();
+
+mc.show1(); // object creation
+
+System.out.println(&quot;After calling show1 method&quot;);
+
+}
+
+}
+
+Nested Loop
+
+// nested loop
+
+public class Nestedloop {
+
+/*
+
+* while .....&gt;3
+
+* for .....&gt; 4
+
+* do-while....&gt;5
+
+*
+
+*/
+
+public static void main(String[] args)
+
+{
+
+int i=0;
+
+int count = 0;
+
+while(i&lt;3)
+
+{
+
+for(int j=0;j&lt;4;j++)
+
+{
+
+int k=0;
+
+do
+
+{
+
+System.out.println(&quot;i....&gt;&quot;+i+&quot; j.....&gt;&quot;+j+&quot;
+
+k.....&gt;&quot;+k);
+
+k++;
+
+count++;
+
+}while(k&lt;5);
+
+}
+
+i++;
+
+}
+
+System.out.println(&quot;Total count is:&quot; + count);
+
+}
+
+}
+
+While Loop
+
+// simple while loop program
+
+public class Whileloop
+
+{
+
+public static void main(String[] args)
+
+{
+
+int i=1;
+
+while(i&lt;=10)
+
+{
+
+System.out.println(&quot;Value:&quot;+ i);
+
+i++;
+
+}
+
+}
+
+}
+
+ package JavaConcepts;
+
+import java.util.ArrayList;
+
+public class Addingelement
+
+{
+
+public static void main(String[] args)
+
+{
+
+// TODO Auto-generated method stub
+
+// Create an ArrayList that holds references to String
+
+ArrayList&lt;String&gt;names = new ArrayList&lt;String&gt;();
+
+// Capacity starts at 10, but size starts at 0
+
+System.out.println(&quot;initial size:&quot;+ names.size() );
+
+// Add three String references
+
+names.add(&quot;Teju&quot;);
+
+names.add(&quot;Neelima&quot;);
+
+names.add(&quot;Satya&quot;);
+
+System.out.println(&quot;new size:&quot; + names.size() );
+
+// Access and print out the Objects
+
+for ( int i=0; i&lt;names.size(); i++ )
+
+System.out.println(&quot;element&quot; + i + &quot;:&quot; + names.get(i) );
+
+}
+
+}
+
+ Arrays
+
+// single dimension array
+
+package JavaConcepts;
+
+// single dimension array
+
+// A container which stores multiple values with a single data type
+
+public class Arraysbasics
+
+{
+
+public static void main(String[] args)
+
+{
+
+// how to declare array by allocating memory for the values (Traditional
+
+way)
+
+int c[]= new int[5];
+
+c[0]=2;
+
+c[1]=4;
+
+c[2]=6;
+
+c[3]=3;
+
+c[4]=1; // Initialized values into that array
+
+int b[]= {5,4,3,2,1}; // straight forward way
+
+for(int i=0; i&lt;b.length;i++) // length is a method, which displays the
+
+size of the array
+
+{
+
+System.out.println(b[i]); // retrieve values present in that array
+
+}
+
+}
+
+}
+
+ package JavaConcepts;
+
+// Multidimensional arrays
+
+public class ArraysMulti
+
+{
+
+public static void main(String[] args)
+
+{
+
+int a[][]= new int [2][3];
+
+a[0][0]=1;
+
+a[0][1]=2;
+
+a[0][2]=3;
+
+a[1][0]=2;
+
+a[1][1]=3;
+
+a[1][2]=1;
+
+/*System.out.println(a[0][2]);
+
+int b[][]= {{1,2,3},{2,3,1},{4,3,5}};
+
+System.out.println(b[1][2]);*/
+
+for(int i=0;i&lt;2;i++) //row
+
+{
+
+for(int j=0; j&lt;3;j++) // column
+
+{
+
+System.out.println(a[i][j]);
+
+}
+
+}
+
+}
+
+}
+
+ Constructor
+
+package JavaConcepts;
+
+public class Constructorbasics
+
+{
+
+// constructor will not return any values
+
+// constructor name should be the class name
+
+public Constructorbasics() // default constructor
+
+{
+
+System.out.println(&quot;This is teju&#39;s constructor&quot;);
+
+}
+
+public Constructorbasics(int i, int j) // constructor with parameters
+
+{
+
+i=10;
+
+j=20;
+
+System.out.println(&quot; This is a constructor parameter &quot;);
+
+}
+
+public void inside()
+
+{
+
+System.out.println(&quot;&quot;);
+
+}
+
+public static void main(String[] args)
+
+{
+
+// whenever the object is created constructor is called
+
+Constructorbasics cb= new Constructorbasics();
+
+Constructorbasics c= new Constructorbasics(10,20); // creating object
+
+and passing values
+
+}
+
+}
+
+/*public Class(int x, int y)
+
+{
+
+System.out.println(x+y);
+
+}*/
+
+ Exceptions
+
+package JavaConcepts;
+
+public class Exceptionbasics
+
+{
+
+public static void main(String[] args)
+
+{
+
+try
+
+{
+
+int a=2, b=0;
+
+int c= a/b;
+
+System.out.println(c);
+
+}
+
+catch(ArithmeticException e)
+
+{
+
+System.out.println(&quot;this is catch block&quot;);
+
+}
+
+finally
+
+{
+
+System.out.println(&quot;This is finally block&quot;);
+
+}
+
+}
+
+}
+
+Overriding
+
+package JavaConcepts;
+
+// sub class which can access the parent class by using the extends keyword
+
+public class Student extends University
+
+{
+
+public static void main(String[] args)
+
+{
+
+Student s= new Student();
+
+s.Names();
+
+s.City();
+
+s.Section();
+
+System.out.println(s.s);
+
+}
+
+}
+
+package JavaConcepts;
+
+// parent class in method over riding
+
+public class University
+
+{
+
+/*private String Neelima;
+
+private String age;
+
+private String mailid;
+
+private int salary;*/
+
+String s= &quot;Teju&quot;;
+
+public void Names()
+
+{
+
+System.out.println(&quot;Nancy&quot;);
+
+System.out.println(&quot;Debra&quot;);
+
+System.out.println(&quot;Katie&quot;);
+
+}
+
+public void Section(){
+
+System.out.println(&quot;A&quot;);
+
+System.out.println(&quot;B&quot;);
+
+System.out.println(&quot;C&quot;);
+
+}
+
+public void City(){
+
+System.out.println(&quot;Dallas&quot;);
+
+System.out.println(&quot;Plano&quot;);
+
+System.out.println(&quot;Irving&quot;);
+
+}
+
+public static void main(String[] args)
+
+{
+
+}
+
+}
+
+ Loop
+
+package JavaConcepts;
+
+import java.util.ArrayList;
+
+import java.util.Arrays;
+
+
+
+public class Usingloop
+
+{
+
+public static void main(String[] args)
+
+{
+
+
+
+ArrayList&lt;String&gt; crunchifyList = new ArrayList&lt;String&gt;();
+
+
+
+// add 4 different values to list
+
+crunchifyList.add(&quot;Teju&quot;);
+
+crunchifyList.add(&quot; is &quot;);
+
+crunchifyList.add(&quot; writing &quot;);
+
+crunchifyList.add(&quot; code &quot;);
+
+
+
+crunchifyList.forEach((hi)-&gt;{
+
+
+
+System.out.print(hi);
+
+});
+}
+}
