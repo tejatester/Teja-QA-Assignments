@@ -1,0 +1,275 @@
+Annotations:
+
+import org.testng.annotations.AfterSuite;
+
+import org.testng.annotations.BeforeSuite;
+
+public class Annotation {
+
+@BeforeSuite //runs at the very beginning of the suite execution
+
+public void first()
+
+{
+
+System.out.println(&quot;I run first&quot;);
+
+}
+
+@AfterSuite //runs at the very end
+
+public void last()
+
+{
+
+System.out.println(&quot;I run last&quot;);
+
+}
+
+}
+
+Data Provider:
+
+import org.testng.annotations.DataProvider;
+
+import org.testng.annotations.Parameters;
+
+import org.testng.annotations.Test;
+
+public class DataProvided {
+
+@Test
+
+@Parameters({&quot;userid&quot;})
+
+public void parametere(String Userid)
+
+{
+
+System.out.println(Userid);
+
+}
+
+@Test(dataProvider=&quot;getdata&quot;)
+
+public void userid(String id,String pswrd, String something)
+
+{
+
+System.out.println(id);
+
+System.out.println(pswrd);
+
+System.out.println(something);
+
+}
+
+@DataProvider
+
+public Object[][] getdata()
+
+{
+
+Object[][] obj = new Object[3][3];
+
+obj[0][0]= &quot;Hey&quot;;
+
+obj[0][1]= &quot;How&quot;;
+
+obj[0][2]= &quot;are you&quot;;
+
+obj[1][0]= &quot;1Hey&quot;;
+
+obj[1][1]= &quot;1How&quot;;
+
+obj[1][2]= &quot;1are you&quot;;
+
+obj[2][0]= &quot;2Hey&quot;;
+
+obj[2][1]= &quot;2How&quot;;
+
+obj[2][2]= &quot;2are you&quot;;
+
+return obj;
+
+}
+
+}
+
+Depends and Enabled:
+
+import org.testng.annotations.Test;
+
+public class DependsandEnabled {
+
+@Test
+
+public void name()
+
+{
+
+System.out.println(&quot;Dependant method&quot;);
+
+}
+
+@Test(dependsOnMethods=(&quot;name&quot;),alwaysRun=true) //depends on the method
+
+mentioned. always run runs the code without any exception.
+
+public void namee()
+
+{
+
+System.out.println(&quot;Depends on name method&quot;);
+
+}
+
+@Test(enabled=false)//skips this method
+
+public void names()
+
+{
+
+System.out.println(&quot;Skip me!&quot;);
+
+}
+
+@Test(timeOut=5000) //fails the test case if the test is not executed in the given time.
+
+public void bro()
+
+{
+
+System.out.println(&quot;Time out-- &gt; fail the test after 5 secs&quot;);
+
+}
+
+}
+
+Read in file property:
+
+import java.io.FileInputStream;
+
+import java.io.FileNotFoundException;
+
+import java.util.Properties;
+
+import org.testng.annotations.Test;
+
+public class Readinfileprop {
+
+@Test
+
+public void UserName() throws Exception
+
+{ //give the
+
+properties file location for the file input stream
+
+FileInputStream file = new
+
+FileInputStream(&quot;C:\\Users\\Bonny\\workspace\\TestNGTuts\\src\\datadriven.properties&quot;);
+
+Properties prop = new Properties(); //use the properties method from java
+
+prop.load(file); //load the property file
+
+System.out.println(prop.getProperty(&quot;username&quot;));
+
+System.out.println(prop.getProperty(&quot;password&quot;));
+
+}
+
+}
+
+TestNG:
+
+import org.testng.annotations.AfterMethod;
+
+import org.testng.annotations.AfterTest;
+
+import org.testng.annotations.BeforeMethod;
+
+import org.testng.annotations.BeforeTest;
+
+import org.testng.annotations.Parameters;
+
+import org.testng.annotations.Test;
+
+public class Testng {
+
+@BeforeMethod //runs before every method
+
+public void hello()
+
+{
+
+System.out.println(&quot;Hola&quot;);
+
+}
+
+@AfterMethod //runs after every method
+
+public void Shut()
+
+{
+
+System.out.println(&quot;Shut it!!&quot;);
+
+}
+
+@BeforeTest //runs only once at the beginning of the test
+
+public void say()
+
+{
+
+System.out.println(&quot;Speak Spanish?&quot;);
+
+}
+
+@Test //doesn&#39;t need a main method to run the program. and depends based on
+
+alphabetical order of the method name
+
+public void Aname()
+
+{
+
+System.out.println(&quot;Amigo&quot;);
+
+}
+
+@Test
+
+public void Bname()
+
+{
+
+System.out.println(&quot;Primo&quot;);
+
+}
+
+@AfterTest //Runs one time after all the tests have been executed.
+
+public void lol()
+
+{
+
+System.out.println(&quot;Okay! STOP!&quot;);
+
+}
+
+@Test
+
+@Parameters({&quot;userid&quot;})
+
+public void parametere(String Userid)
+
+{
+
+System.out.println(Userid);
+
+}
+
+}
