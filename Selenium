@@ -1,0 +1,789 @@
+Selenium Work
+
+ Alerts?
+
+package selenium1;
+
+import org.openqa.selenium.By;
+
+import org.openqa.selenium.WebDriver;
+
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Alerts
+
+{
+
+// handling java popup alerts
+
+public static void main(String[] args)
+
+{
+
+System.setProperty(&quot;webdriver.chrome.driver&quot;,&quot;C:\\Users\\Welcome\\Desktop\\Selenium\\Se
+
+leniumJars\\chromedriver.exe&quot;);
+
+WebDriver driver= new ChromeDriver();
+
+driver.get(&quot;http://www.tizag.com/javascriptT/javascriptalert.php&quot;);
+
+driver.manage().window().maximize();
+
+driver.findElement(By.xpath(&quot;/html/body/table[3]/tbody/tr[1]/td[2]/table/tbody/tr/td/div[4]/fo
+
+rm/input&quot;)).click();
+
+// to verify the text in the popup is displaying as per the expected or not
+
+System.out.println(driver.switchTo().alert().getText());
+
+//driver.switchTo().alert().sendKeys(&quot;Teju&quot;); // if we have any edit boxes
+
+// Switching web element to alert and accept is used for clicking the ok button
+
+driver.switchTo().alert().accept(); // accept = positive scenario i.e to select ok,
+
+done, yes
+
+//driver.switchTo().alert().dismiss(); // dismiss= negative scenario i.e., to select
+
+cancel
+
+}
+
+}
+
+ Handling multiple windows?
+
+package selenium1;
+
+import java.util.Set;
+
+import org.openqa.selenium.By;
+
+import org.openqa.selenium.WebDriver;
+
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import com.gargoylesoftware.htmlunit.javascript.host.Iterator;
+
+public class HandlingMultipleWindows
+
+{
+
+public static void main(String[] args)
+
+{
+
+System.setProperty(&quot;webdriver.chrome.driver&quot;,&quot;C:\\Users\\Welcome\\Desktop\\Selenium\\Se
+
+leniumJars\\chromedriver.exe&quot;);
+
+WebDriver driver= new ChromeDriver();
+
+driver.get(&quot;https://accounts.google.com/signup&quot;);
+
+driver.findElement(By.xpath(&quot;//*[@id=&#39;wrapper&#39;]/div[2]/div/div[1]/p/a&quot;)).click();
+
+System.out.println(&quot;Before Switching&quot;);
+
+System.out.println(driver.getTitle());
+
+// get window handles will give the ids of all the windows
+
+Set&lt;String&gt; ids= driver.getWindowHandles(); // ids is set name
+
+// iterator is used to get the particular id into the window
+
+java.util.Iterator&lt;String&gt; it= ids.iterator();
+
+String parentid= (String) it.next();
+
+String childid= (String) it.next();
+
+driver.switchTo().window(childid); // switching to child window
+
+System.out.println(&quot;After Switching&quot;);
+
+System.out.println(driver.getTitle());
+
+driver.switchTo().window(parentid); // switching back to parent window
+
+System.out.println(&quot; Again Switching back to parent&quot;);
+
+System.out.println(driver.getTitle());
+
+//driver.close(); // will close the browser window that driver has focus on it
+
+driver.quit(); // quits the driver, closing every associated window
+
+}
+
+}
+
+ Dropdown
+
+package selenium1;
+
+import org.openqa.selenium.By;
+
+import org.openqa.selenium.WebDriver;
+
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import org.openqa.selenium.support.ui.Select;
+
+public class Dropdowns {
+
+public static void main(String[] args)
+
+{
+
+System.setProperty(&quot;webdriver.chrome.driver&quot;,&quot;C:\\Users\\Welcome\\Desktop\\Selenium\\Seleni
+
+umJars\\chromedriver.exe&quot;);
+
+WebDriver driver= new ChromeDriver();
+
+driver.get(&quot;http://spicejet.com&quot;);
+
+// dynamic dropdown
+
+/*driver.findElement(By.xpath(&quot;//*[@id=&#39;ctl00_mainContent_ddl_originStation1_CTXT&#39;]&quot;)).clic
+
+k();
+
+driver.findElement(By.xpath(&quot;//a[@value=&#39;GOI&#39;]&quot;)).click();*/
+
+// static dropdown
+
+Select dropdown= new
+
+Select(driver.findElement(By.xpath(&quot;//*[@id=&#39;ctl00_mainContent_ddl_Adult&#39;]&quot;)));
+
+dropdown.selectByIndex(5);
+
+dropdown.selectByVisibleText(&quot;6 adults&quot;);
+
+dropdown.selectByValue(&quot;9&quot;);
+
+// check box which shows the true or false in the output because of the isselected
+
+System.out.println(driver.findElement(By.xpath(&quot;//*[@id=&#39;ctl00_mainContent_chk_IndArm&#39;]&quot;)).
+
+isSelected());
+
+driver.findElement(By.xpath(&quot;//*[@id=&#39;ctl00_mainContent_chk_IndArm&#39;]&quot;)).click();
+
+System.out.println(driver.findElement(By.xpath(&quot;//*[@id=&#39;ctl00_mainContent_chk_IndArm&#39;]&quot;)).
+
+isSelected());
+
+}
+
+}
+
+/* there are mainly two types of dropdowns
+
+* 1. Dynamic: if you enter something then you will get some suggestions(suggestible
+
+dropdown)
+
+* 2. static: the values are fixed
+
+* //*[@id=&quot;ctl00_mainContent_ddl_originStation1_CTXT&quot;]
+
+*
+
+*/
+
+ Frames
+
+package selenium1;
+
+import org.openqa.selenium.By;
+
+import org.openqa.selenium.WebDriver;
+
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Frames
+
+{
+
+// frames: Frames are a kind of html document which are embedded on other html
+
+document
+
+public static void main(String[] args)
+
+{
+
+System.setProperty(&quot;webdriver.chrome.driver&quot;,&quot;C:\\Users\\Welcome\\Desktop\\Selenium\\Seleni
+
+umJars\\chromedriver.exe&quot;);
+
+WebDriver driver= new ChromeDriver();
+
+driver.get(&quot;https://netbanking.hdfcbank.com/netbanking/&quot;);
+
+System.out.println(driver.getPageSource());
+
+driver.findElement(By.cssSelector(&quot;input[class=&#39;input_password&#39;]&quot;)).sendKeys(&quot;100&quot;);
+
+driver.switchTo().frame(1); // switching web element to frames
+
+driver.findElement(By.cssSelector(&quot;input[class=&#39;input_password&#39;]&quot;)).sendKeys(&quot;100&quot;);
+
+
+
+}
+
+}
+
+ Close and Quit
+
+package selenium1;
+
+import org.openqa.selenium.WebDriver;
+
+import org.openqa.selenium.chrome.ChromeDriver;
+
+//import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class helloworld
+
+{
+
+public static void main(String[] args)
+
+{
+
+System.setProperty(&quot;webdriver.chrome.driver&quot;,&quot;C:\\Users\\Welcome\\Desktop\\Selenium\\Se
+
+leniumJars\\chromedriver.exe&quot;);
+
+WebDriver driver= new ChromeDriver();
+
+driver.get(&quot;https://qaclickacademy.com//&quot;); // get to hit the url
+
+System.out.println(driver.getTitle());
+
+System.out.println(driver.getPageSource());
+
+System.out.println(driver.getCurrentUrl());
+
+driver.close();
+
+//driver.quit();
+
+}
+
+// relative xpath: specify location relative to current directory
+
+// absolute xpath: specify the entire path through directory hierarchy
+
+ Locators
+
+package selenium1;
+
+import org.openqa.selenium.By;
+
+import org.openqa.selenium.WebDriver;
+
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Locators
+
+{
+
+public static void main(String[] args)
+
+{
+
+System.setProperty(&quot;webdriver.chrome.driver&quot;,&quot;C:\\Users\\Welcome\\Desktop\\Selenium\\Se
+
+leniumJars\\chromedriver.exe&quot;);
+
+WebDriver driver=new ChromeDriver();
+
+driver.get(&quot;https://facebook.com//&quot;);
+
+driver.findElement(By.id(&quot;email&quot;)).sendKeys(&quot;abcde&quot;); // username button by
+
+using id locator
+
+driver.findElement(By.name(&quot;pass&quot;)).sendKeys(&quot;1234&quot;); // password button by
+
+using name locator
+
+driver.findElement(By.className(&quot;inputtext&quot;)).sendKeys(&quot;1234&quot;);// password
+
+button
+
+driver.findElement(By.linkText(&quot;Forgot your password&quot;)).click(); // forgot your
+
+account
+
+driver.findElement(By.partialLinkText(&quot;Forgot your&quot;)).click(); // forgot your
+
+account
+
+driver.findElement(By.xpath(&quot;//*[@id=&#39;u_0_n&#39;]&quot;)).sendKeys(&quot;234&quot;); // password
+
+button
+
+driver.findElement(By.id(&quot;u_0_n&quot;)).click();
+
+}
+
+}
+
+/*
+
+* syntax for xpath without using the firepath
+
+.//tagname[@attribute=&#39;value&#39;] or
+
+.//*[@attribute=&#39;value&#39;]
+
+attribute should be unique
+
+*/
+
+/* writing xpath by using tagnames transverse
+
+*
+
+*/
+
+/* CSS is 10 times greater than xpath
+
+*
+
+* CSS= tagname[attribute=&#39;value&#39;] or
+
+* css= [attribute=&#39;value&#39;]
+
+* simple way of writing the css id is &#39;#&#39;
+
+* css classname is &#39;.&#39; and if is there any space between the class name just
+
+* use &#39;.&#39; instead of space. e.g., .input.identifier
+
+*/
+
+//in most of the cases id will be unique
+
+/* how to inspect the locators in google
+
+* to get the xpath of the particular box,
+
+* just right click on the
+
+* - html code
+
+* - select copy
+
+* - select xpath
+
+* same as for css right click on html code
+
+* - select the selector option
+
+*
+
+*/
+
+/* 1. verify in firebug before u run the script in the eclipse
+
+* 2. css customized syntax (tagname[attribute=&#39;value&#39;])
+
+* 3. css shortcut method i.e.,
+
+* #idname
+
+* .classname
+
+* 4. find the unique attribute
+
+*/
+
+ Radio buttons
+
+package selenium1;
+
+import org.openqa.selenium.By;
+
+import org.openqa.selenium.WebDriver;
+
+import org.openqa.selenium.WebElement;
+
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Radiobuttons
+
+{
+
+public static void main(String[] args)
+
+{
+
+System.setProperty(&quot;webdriver.chrome.driver&quot;,&quot;C:\\Users\\Welcome\\Desktop\\Selenium\\Se
+
+leniumJars\\chromedriver.exe&quot;);
+
+WebDriver driver= new ChromeDriver();
+
+driver.get(&quot;http://www.echoecho.com/htmlforms10.htm&quot;);
+
+driver.manage().window().maximize();
+
+// radio button selection by writing our own xpath
+
+driver.findElement(By.xpath(&quot;//input[@value=&#39;Milk&#39;]&quot;)).click();
+
+// how to handle the radio buttons without having unique attributes
+
+// count of the radio buttons present in the first section
+
+//System.out.println(driver.findElements(By.xpath(&quot;//input[@name=&#39;group1&#39;]&quot;)).size());
+
+int count= driver.findElements(By.xpath(&quot;//input[@name=&#39;group1&#39;]&quot;)).size();
+
+for (int i=0; i&lt; count; i++)
+
+{
+
+// to retrieve single radio button among three we use get(index) method
+
+//driver.findElements(By.xpath(&quot;//input[@name=&#39;group1&#39;]&quot;)).get(i).click();
+
+// without having unique attribute, how to select one radio button
+
+String
+
+text=driver.findElements(By.xpath(&quot;//input[@name=&#39;group1&#39;]&quot;)).get(i).getAttribute(&quot;value&quot;);
+
+if (text.equals(&quot;Cheese&quot;))
+
+{
+
+driver.findElements(By.xpath(&quot;//input[@name=&#39;group1&#39;]&quot;)).get(i).click();
+
+}
+
+}
+
+}
+
+}
+
+ Setting language
+
+package selenium1;
+
+import org.openqa.selenium.WebDriver;
+
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+import org.openqa.selenium.firefox.FirefoxProfile;
+
+public class SelectLanguage {
+
+public static void main(String[] args)
+
+{
+
+//System.setProperty(&quot;webdriver.chrome.driver&quot;,&quot;C:\\Users\\Welcome\\Desktop\\Selenium\\
+
+SeleniumJars\\chromedriver.exe&quot;);
+
+WebDriver driver=new FirefoxDriver();
+
+FirefoxProfile profile=new FirefoxProfile();
+
+profile.setPreference(&quot;intl.accept_languages&quot;, &quot;te&quot;);
+
+driver=new FirefoxDriver(profile);
+
+driver.get(&quot;https://www.google.com&quot;);
+
+}
+
+}
+
+ Validation
+
+package selenium1;
+
+import org.junit.Assert;
+
+import org.openqa.selenium.By;
+
+import org.openqa.selenium.WebDriver;
+
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Validation
+
+{
+
+public static void main(String[] args)
+
+{
+
+// visible and hidden mode validation
+
+System.setProperty(&quot;webdriver.chrome.driver&quot;,&quot;C:\\Users\\Welcome\\Desktop\\Selenium\\Se
+
+leniumJars\\chromedriver.exe&quot;);
+
+WebDriver driver= new ChromeDriver();
+
+driver.get(&quot;http://www.makemytrip.com//&quot;);
+
+System.out.println(&quot;Before clicking the radio button of multi city&quot;);
+
+Assert.assertTrue(driver.findElement(By.xpath(&quot;.//*[@id=&#39;return_date_sec&#39;]/span[3]&quot;)).isDis
+
+played());
+
+// isdisplayed will display wheteher the return date is in visible mode or not
+
+System.out.println(driver.findElement(By.xpath(&quot;.//*[@id=&#39;return_date_sec&#39;]/span[3]&quot;)).isDi
+
+splayed());
+
+driver.findElement(By.xpath(&quot;.//*[@id=&#39;multi_city_button&#39;]/span&quot;)).click();
+
+System.out.println(&quot;After clicking the radio button of multi city&quot;);
+
+// is enabled is used to check whether the element is enabled or disabled
+
+//driver.findElement(By.xpath(&quot;.//*[@id=&#39;multi_city_button&#39;]/span&quot;)).isEnabled();
+
+// is displayed is used when particular object is in code base but it is in visible or
+
+not
+
+Assert.assertFalse(driver.findElement(By.xpath(&quot;.//*[@id=&#39;return_date_sec&#39;]&quot;)).isDisplayed()
+
+);
+
+System.out.println(driver.findElement(By.xpath(&quot;.//*[@id=&#39;return_date_sec&#39;]&quot;)).isDisplayed(
+
+));
+
+//System.out.println(driver.findElement(By.xpath(&quot;.//*[@id=&#39;responsive_bottom&#39;]/div[2]/div[1]/d
+
+iv/div/h3&quot;)).getText());
+
+//if you want to validate the object which is present in the web page or code base
+
+int
+
+count=driver.findElements(By.xpath(&quot;.//*[@id=&#39;mul_city_button&#39;]/span&quot;)).size();
+
+if(count ==0)
+
+{
+
+System.out.print(&quot;Clarrified&quot;);
+
+}
+
+}
+
+}
+
+/*isselected is used for radio buttons whether the button is selected or not and the
+
+*
+
+* isdisplayed is used for the methods to check whether the buttons in visible or hidden
+
+mode
+
+*
+
+* assert true displays only if the condition is true then the script continues to execute
+
+*
+
+* assert false displays false statements
+
+*/
+
+ Chrome Driver
+
+import org.openqa.selenium.WebDriver;
+
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Chromedemo {
+
+public static void main(String args[])
+
+{
+
+WebDriver driver=new ChromeDriver();
+
+System.setProperty(&quot;webdriver.chrome.driver&quot;, &quot;C:\\seleniumcrome\\ChromeSetup.exe&quot;);
+
+driver.get(&quot;https://www.youtube.com&quot;);
+
+System.out.println(driver.getTitle());
+
+}
+
+}
+
+ Actions
+
+package selenium1;
+
+import org.openqa.selenium.By;
+
+import org.openqa.selenium.WebDriver;
+
+import org.openqa.selenium.WebElement;
+
+import org.openqa.selenium.chrome.ChromeDriver;
+
+// write test case to display- moving the mouse instead of clicking on it
+
+public class Actions {
+
+public static void main(String[] args)
+
+{
+
+System.setProperty(&quot;webdriver.chrome.driver&quot;,&quot;C:\\Users\\Welcome\\Desktop\\Selenium\\Seleniu
+
+mJars\\chromedriver.exe&quot;);
+
+WebDriver driver= new ChromeDriver();
+
+driver.get(&quot;https://www.amazon.com/&quot;);
+
+Actions abc= new Actions();
+
+//WebElement element= driver.findElement(By.xpath(&quot;.//*[@id=&#39;nav-signin- text&#39;]&quot;));
+
+//abc.moveToElement(driver.findElement(By.xpath(&quot;.//*[@id=&#39;nav-signin-
+
+text&#39;]&quot;))).build().perform();
+
+}
+
+}
+
+ Gmail Implicit checking
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+
+import org.openqa.selenium.WebDriver;
+
+import org.openqa.selenium.WebElement;
+
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+import org.openqa.selenium.support.ui.Select;
+
+public class gmail {
+
+public static void main(String[] args) {
+
+// TODO Auto-generated method stub
+
+WebDriver driver=new FirefoxDriver();
+
+driver.get(&quot;https://accounts.google.com/ServiceLogin?service=mail&amp;passive=true&amp;rm=false&amp;co
+
+ntinue=https://mail.google.com/mail/&amp;ss=1&amp;scc=1&amp;ltmpl=default&amp;ltmplcache=2&amp;emr=1&amp;osid
+
+=1&quot;);
+
+driver.findElement(By.xpath(&quot;.//*[@id=&#39;Email&#39;]&quot;)).sendKeys(&quot;pavansama87&quot;);
+
+driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+
+driver.findElement(By.xpath(&quot;.//*[@id=&#39;next&#39;]&quot;)).click();
+
+driver.findElement(By.xpath(&quot;/html/body/div/div[2]/div[2]/div[1]/form/div[2]/div/div[2]/div/div/input[2
+
+]&quot;)).sendKeys(&quot;pavan12333&quot;);
+
+driver.findElement(By.xpath(&quot;.//*[@id=&#39;signIn&#39;]&quot;)).click();
+
+driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+
+}
+
+}
+
+ Drag and Drop
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+
+import org.openqa.selenium.WebDriver;
+
+import org.openqa.selenium.WebElement;
+
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+import org.openqa.selenium.interactions.Action;
+
+import org.openqa.selenium.interactions.Actions;
+
+public class DragAndDrop {
+
+public static void main(String[] args) throws InterruptedException {
+
+WebDriver driver = new FirefoxDriver();
+
+String URL = &quot;http://www.dhtmlx.com/docs/products/dhtmlxTree/index.shtml&quot;;
+
+driver.get(URL);
+
+// It is always advisable to Maximize the window before performing DragNDrop action
+
+driver.manage().window().maximize();
+
+driver.manage().timeouts().implicitlyWait(10000, TimeUnit.MILLISECONDS);
+
+WebElement From =
+
+driver.findElement(By.xpath(&quot;.//*[@id=&#39;treebox1&#39;]/div/table/tbody/tr[2]/td[2]/table/tbody/tr[2]/td[2]/t
+
+able/tbody/tr[1]/td[4]/span&quot;));
+
+WebElement To =
+
+driver.findElement(By.xpath(&quot;.//*[@id=&#39;treebox2&#39;]/div/table/tbody/tr[2]/td[2]/table/tbody/tr[2]/td[2]/t
+
+able/tbody/tr[2]/td[2]/table/tbody/tr[1]/td[4]/span&quot;));
+
+Actions builder = new Actions(driver);
+
+Action dragAndDrop = builder.clickAndHold(From)
+
+.moveToElement(To)
+
+.release(To)
+
+.build();
+
+dragAndDrop.perform();
+
+}
+
+}
