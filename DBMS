@@ -1,0 +1,237 @@
+Data-Base Concepts:
+
+1) Inner Join: The INNER JOIN keyword selects all rows from both tables as long as there
+
+is a match between the columns in both tables.
+
+Syntax:
+
+SELECT column_name(s)
+
+FROM table1
+
+INNER JOIN table2
+
+ON table1.column_name=table2.column_name;
+
+2) Left Outer Join: A LEFT OUTER JOIN is one of the join operations that allow you to
+
+specify a join clause. It preserves the unmatched rows from the first (left) table, joining
+
+them with a NULL row in the shape of the second (right) table.
+
+Syntax:
+
+TableExpression LEFT [ OUTER ] JOIN TableExpression
+
+{
+
+ON booleanExpression |
+
+USING clause
+
+}
+
+3) Right Outer Join: A RIGHT OUTER JOIN is one of the join operations that allow you
+
+to specify a JOIN clause. It preserves the unmatched rows from the second (right) table,
+
+joining them with a NULL in the shape of the first (left) table. A LEFT OUTER JOIN B
+
+is equivalent to B RIGHT OUTER JOIN A, with the columns in a different order.
+
+Syntax:
+
+TableExpression RIGHT [ OUTER ] JOIN TableExpression
+
+{
+
+ON booleanExpression
+
+}
+
+4) Group By: The GROUP BY statement is used in conjunction with the aggregate
+
+functions to group the result-set by one or more columns.
+
+Syntax:
+
+SELECT column_name, aggregate_function(column_name)
+
+FROM table_name
+
+WHERE column_name operator value
+
+GROUP BY column_name;
+
+5) Having: The HAVING clause was added to SQL because the WHERE keyword could
+
+not be used with aggregate functions.
+
+Syntax:
+
+SELECT column_name, aggregate_function(column_name)
+
+FROM table_name
+
+WHERE column_name operator value
+
+GROUP BY column_name
+
+HAVING aggregate_function(column_name) operator value;
+
+6) Average: The AVG() function returns the average value of a numeric column.
+
+Syntax: SELECT AVG(column_name) FROM table_name
+
+7) Finding Top Rows: The SELECT TOP clause is used to specify the number of records
+
+to return. The SELECT TOP clause can be very useful on large tables with thousands of
+
+records. Returning a large number of records can impact on performance.
+
+Syntax:
+
+SELECT TOP number|percent column_name(s)
+
+FROM table_name;
+
+8) Primary key: The PRIMARY KEY constraint uniquely identifies each record in a
+
+database table. Primary keys must contain UNIQUE values. A primary key column
+
+cannot contain NULL values. Most tables should have a primary key, and each table can
+
+have only ONE primary key.
+
+Example:
+
+CREATE TABLE Persons
+
+(
+
+P_Id int NOT NULL,
+
+LastName varchar(255) NOT NULL,
+
+FirstName varchar(255),
+
+Address varchar(255),
+
+City varchar(255),
+
+PRIMARY KEY (P_Id)
+
+)
+
+9) Foreign Key: A FOREIGN KEY in one table points to a PRIMARY KEY in another
+
+table. Let&#39;s illustrate the foreign key with an example.
+
+Example:
+
+P_Id LastName FirstName Address City
+
+1 Kutala karthik 2925 Keystone texas
+
+2 sama vidya 22250 Keystone texas
+
+3 sam Kalyan 2300 Presscott dr texas
+
+Use-Cases:
+
+1) Tables for employment management system:
+
+Library management system:
+
+Database Name: bookdetails
+
+Field Name  Data Type  Size  Relation
+
+Accno Varchar 50 Primary key
+
+Author Varchar 50 Not null
+
+Title Varchar 50 Not null
+
+Publication Varchar 50 Not null
+
+Edition Varchar 50 Not null
+
+No_of_copies int Not null
+
+Volumn Varchar 50 Not null
+
+Date_pur Varchar 50 Not null
+
+Price Decimal (18,2) Not null
+
+Status Varchar(50) 50 Not null
+
+ 
+
+Database Name: student
+
+Field Name  Data Type  Size  Relation
+
+Name Varchar 50 Not null
+
+Regno Varchar 50 Primary key
+
+Date_of_issue Datetime Not null
+
+Addresss Varchar 50 Not null
+
+Date_of_return Datetime Not null
+
+Course Varchar 50 Not null
+
+Accno Varchar 50 Foreign key
+
+Gender Varchar 50 Not null
+
+ 
+
+Database Name: issue
+
+Field Name  Data Type  Size  Relation
+
+Regno Varchar 50 Foreign key
+
+Date_of_issue_books Datetime Not null
+
+Date_of_return_books Datetime Not null
+
+Accno Varchar 50 Not Null
+
+Name Varchar 50 Not null
+
+Course Varchar 50 Not null
+
+Author Varchar 50 Not null
+
+Volumn Varchar 50 Not null
+
+Edition Varchar 50 Not null
+
+Database Name: return
+
+Field Name  Data Type  Size  Relation
+
+Regno Varchar 50 Foreign key
+
+Accno Varchar 50 Not Null
+
+Date_of_return_books Datetime Not null
+
+Date_of_issue_books Datetime Not null
+
+Name Varchar 50 Not null
+
+Course Varchar 50 Not null
+
+Author Varchar 50 Not null
+
+Volumn Varchar 50 Not null
+
+Edition Varchar 50 Not
